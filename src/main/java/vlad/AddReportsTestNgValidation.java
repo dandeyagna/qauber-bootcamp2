@@ -1,4 +1,4 @@
-package main.java;
+package vlad;
 
 import java.util.concurrent.TimeUnit;
 
