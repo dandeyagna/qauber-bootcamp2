@@ -1,5 +1,6 @@
 package vlad;
 
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -23,16 +24,27 @@ public class AddReportsTestNgValidation {
 			fox.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			fox.get("http://fits.qauber.com");
 			fox.manage().window().maximize();
-			fox.findElement(By.xpath(".//*[@id='exampleInputEmail1']")).sendKeys("dryrun4@mailinator.com");
-			fox.findElement(By.xpath(".//*[@id='exampleInputPassword1']")).sendKeys("password");
+			
+			HashMap<String,String> map = new HashMap<String,String>();
+			map.put("email", "dryrun4@mailinator.com");
+			map.put("password", "password");
+			map.put("caseID", "123456789");
+			map.put("firstname", "Krokodil");
+			map.put("lastname", "Gena");
+			map.put("location", "1234 Mockingbird Lane");
+			
+			
+			
+			fox.findElement(By.xpath(".//*[@id='exampleInputEmail1']")).sendKeys(map.get("email"));
+			fox.findElement(By.xpath(".//*[@id='exampleInputPassword1']")).sendKeys(map.get("password"));
 			fox.findElement(By.xpath(".//*[@type='submit']")).sendKeys(Keys.RETURN);
 			fox.findElement(By.xpath(".//*[text() = 'Add Report']")).click();
 			fox.findElement(By.xpath("//div[@class='fa fa-user size']")).click();
-			fox.findElement(By.xpath("//input[@ng-model='wizard.report.caseNumber']")).sendKeys("123456789");
-			fox.findElement(By.xpath("//input[@name='lastName']")).sendKeys("Gena");
-			fox.findElement(By.xpath("//input[@name='firstName']")).sendKeys("Krokodil");
+			fox.findElement(By.xpath("//input[@ng-model='wizard.report.caseNumber']")).sendKeys(map.get("caseID"));
+			fox.findElement(By.xpath("//input[@name='lastName']")).sendKeys(map.get("lastname"));
+			fox.findElement(By.xpath("//input[@name='firstName']")).sendKeys(map.get("firstname"));
 			fox.findElement(By.xpath("//h4/div[@title='Gang Membership']")).click();
-			fox.findElement(By.xpath("//input[@ng-model='wizard.report.locationOfStop']")).sendKeys("1234 Mockingbird Lane.");
+			fox.findElement(By.xpath("//input[@ng-model='wizard.report.locationOfStop']")).sendKeys(map.get("location"));
 			fox.findElement(By.xpath("//h4/div[@title='Preview']")).click();
 			fox.findElement(By.xpath("//button[@ng-click='wizard.commitReport()']")).click();
 			fox.findElement(By.xpath("//div[5]/a[1]")).click();		
