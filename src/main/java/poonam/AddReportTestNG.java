@@ -19,6 +19,7 @@ public class AddReportTestNG {
 
     @BeforeTest
     public void addReport(){
+
         wd = new FirefoxDriver();
         wait = new WebDriverWait(wd, 12);
 
