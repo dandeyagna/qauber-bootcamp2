@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class AddReportTestNG {
     private WebDriver wd;
     private WebDriverWait wait;
+    //This is just comments.
 
     @BeforeTest
     public void addReport(){
